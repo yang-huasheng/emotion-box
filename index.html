@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="情绪盒子 - AI情绪治愈日记，坏情绪定时消散，小美好永久珍藏">
+    <meta name="theme-color" content="#7C9ACC">
+    <title>情绪盒子 - 欢迎来到情绪盒子</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/layouts.css">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🫧</text></svg>">
+</head>
+<body>
+    <div id="app" class="app-container">
+        <!-- 准入选择页面 -->
+        <div class="onboarding-container">
+            <div class="onboarding-header">
+                <div class="onboarding-icon">🌟</div>
+                <h1 class="onboarding-title">欢迎来到情绪盒子</h1>
+                <p class="onboarding-subtitle">在开始之前，让我们先了解一下你</p>
+            </div>
+
+            <div class="test-selection-grid">
+                <!-- MBTI性格测试卡片 -->
+                <div class="test-selection-card" id="mbtiSelectionCard">
+                    <div class="test-card-icon">🧠</div>
+                    <h2 class="test-card-title">MBTI性格测试</h2>
+                    <p class="test-card-desc">了解你的性格特质与行事风格</p>
+                    <div class="test-options">
+                        <button class="test-option-btn" data-test="mbti" data-choice="known">
+                            <span class="option-icon">✓</span>
+                            <span class="option-text">我清楚自己的MBTI</span>
+                        </button>
+                        <button class="test-option-btn secondary" data-test="mbti" data-choice="unknown">
+                            <span class="option-icon">📝</span>
+                            <span class="option-text">我想做测试</span>
+                        </button>
+                    </div>
+                    <div class="mbti-quick-select hidden" id="mbtiQuickSelect">
+                        <p class="quick-select-label">选择你的MBTI类型</p>
+                        <div class="mbti-type-selector">
+                            <select id="mbtiTypeSelect" class="type-select">
+                                <option value="">请选择...</option>
+                                <optgroup label="分析型">
+                                    <option value="INTJ">INTJ - 建筑师</option>
+                                    <option value="INTP">INTP - 逻辑学家</option>
+                                    <option value="ENTJ">ENTJ - 指挥官</option>
+                                    <option value="ENTP">ENTP - 辩论家</option>
+                                </optgroup>
+                                <optgroup label="外交型">
+                                    <option value="INFJ">INFJ - 提倡者</option>
+                                    <option value="INFP">INFP - 调停者</option>
+                                    <option value="ENFJ">ENFJ - 主人公</option>
+                                    <option value="ENFP">ENFP - 竞选者</option>
+                                </optgroup>
+                                <optgroup label="守护型">
+                                    <option value="ISTJ">ISTJ - 物流师</option>
+                                    <option value="ISFJ">ISFJ - 守卫者</option>
+                                    <option value="ESTJ">ESTJ - 总经理</option>
+                                    <option value="ESFJ">ESFJ - 执政官</option>
+                                </optgroup>
+                                <optgroup label="探险型">
+                                    <option value="ISTP">ISTP - 鉴赏家</option>
+                                    <option value="ISFP">ISFP - 探险家</option>
+                                    <option value="ESTP">ESTP - 企业家</option>
+                                    <option value="ESFP">ESFP - 表演者</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <button class="confirm-selection-btn" id="confirmMBTIBtn">确认选择</button>
+                    </div>
+                </div>
+
+                <!-- 霍兰德职业测试卡片 -->
+                <div class="test-selection-card" id="hollandSelectionCard">
+                    <div class="test-card-icon">💼</div>
+                    <h2 class="test-card-title">霍兰德职业测试</h2>
+                    <p class="test-card-desc">发现你的职业兴趣与天赋</p>
+                    <div class="test-options">
+                        <button class="test-option-btn" data-test="holland" data-choice="known">
+                            <span class="option-icon">✓</span>
+                            <span class="option-text">我知道我的类型</span>
+                        </button>
+                        <button class="test-option-btn secondary" data-test="holland" data-choice="unknown">
+                            <span class="option-icon">📝</span>
+                            <span class="option-text">我想做测试</span>
+                        </button>
+                    </div>
+                    <div class="holland-quick-select hidden" id="hollandQuickSelect">
+                        <p class="quick-select-label">选择你的霍兰德类型</p>
+                        <div class="holland-type-selector">
+                            <select id="hollandTypeSelect" class="type-select">
+                                <option value="">请选择...</option>
+                                <option value="R">R - 现实型（Realistic）</option>
+                                <option value="I">I - 研究型（Investigative）</option>
+                                <option value="A">A - 艺术型（Artistic）</option>
+                                <option value="S">S - 社会型（Social）</option>
+                                <option value="E">E - 企业型（Enterprising）</option>
+                                <option value="C">C - 常规型（Conventional）</option>
+                                <option value="RI">RI - 现实+研究型</option>
+                                <option value="RS">RS - 现实+社会型</option>
+                                <option value="IS">IS - 研究+社会型</option>
+                                <option value="IA">IA - 研究+艺术型</option>
+                                <option value="SA">SA - 社会+艺术型</option>
+                                <option value="SE">SE - 社会+企业型</option>
+                                <option value="EC">EC - 企业+常规型</option>
+                                <option value="CI">CI - 常规+研究型</option>
+                                <option value="CR">CR - 常规+现实型</option>
+                            </select>
+                        </div>
+                        <button class="confirm-selection-btn" id="confirmHollandBtn">确认选择</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 底部操作按钮 -->
+            <div class="onboarding-footer">
+                <button class="skip-btn" id="skipOnboardingBtn">稍后再说</button>
+                <button class="next-btn" id="nextOnboardingBtn" disabled>下一步</button>
+            </div>
+            
+            <!-- 完成状态指示器 -->
+            <div class="completion-indicator">
+                <div class="completion-item">
+                    <span class="completion-icon" id="mbtiIcon">○</span>
+                    <span class="completion-text">MBTI</span>
+                </div>
+                <div class="completion-arrow">→</div>
+                <div class="completion-item">
+                    <span class="completion-icon" id="hollandIcon">○</span>
+                    <span class="completion-text">霍兰德</span>
+                </div>
+                <div class="completion-arrow">→</div>
+                <div class="completion-item">
+                    <span class="completion-icon" id="doneIcon">○</span>
+                    <span class="completion-text">完成</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay hidden" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">提示</h3>
+                <button class="modal-close" id="modalClose">
+                    <svg width="20" height="20" viewBox="0 0 256 256"><path fill="currentColor" d="M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128L50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z"/></svg>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-footer" id="modalFooter"></div>
+        </div>
+    </div>
+
+    <script>
+        // 页面加载时检查是否已完成引导
+        document.addEventListener('DOMContentLoaded', () => {
+            const hasCompletedSetup = localStorage.getItem('hasCompletedSetup') === 'true';
+            if (hasCompletedSetup) {
+                window.location.href = 'main.html';
+                return;
+            }
+
+            // 获取DOM元素
+            const mbtiSelect = document.getElementById('mbtiTypeSelect');
+            const hollandSelect = document.getElementById('hollandTypeSelect');
+            const nextBtn = document.getElementById('nextOnboardingBtn');
+            const skipBtn = document.getElementById('skipOnboardingBtn');
+            const mbtiIcon = document.getElementById('mbtiIcon');
+            const hollandIcon = document.getElementById('hollandIcon');
+            const doneIcon = document.getElementById('doneIcon');
+
+            // 检查两个选择是否都已完成
+            function checkCompletion() {
+                const mbtiSelected = mbtiSelect.value && mbtiSelect.value !== '';
+                const hollandSelected = hollandSelect.value && hollandSelect.value !== '';
+                
+                // 更新MBTI图标状态
+                if (mbtiIcon) {
+                    mbtiIcon.textContent = mbtiSelected ? '✓' : '○';
+                    mbtiIcon.classList.toggle('completed', mbtiSelected);
+                }
+                
+                // 更新霍兰德图标状态
+                if (hollandIcon) {
+                    hollandIcon.textContent = hollandSelected ? '✓' : '○';
+                    hollandIcon.classList.toggle('completed', hollandSelected);
+                }
+                
+                // 更新完成图标状态
+                if (doneIcon) {
+                    doneIcon.textContent = (mbtiSelected && hollandSelected) ? '✓' : '○';
+                    doneIcon.classList.toggle('completed', (mbtiSelected && hollandSelected));
+                }
+                
+                // 更新下一步按钮状态
+                if (nextBtn) {
+                    if (mbtiSelected && hollandSelected) {
+                        nextBtn.disabled = false;
+                        nextBtn.textContent = '完成';
+                    } else {
+                        nextBtn.disabled = true;
+                        nextBtn.textContent = '下一步';
+                    }
+                }
+            }
+
+            // 监听下拉框变化
+            if (mbtiSelect) {
+                mbtiSelect.addEventListener('change', checkCompletion);
+            }
+            if (hollandSelect) {
+                hollandSelect.addEventListener('change', checkCompletion);
+            }
+
+            // 稍后再说按钮
+            if (skipBtn) {
+                skipBtn.addEventListener('click', () => {
+                    // 不保存任何数据，仅标记已跳过
+                    localStorage.setItem('hasCompletedSetup', 'true');
+                    localStorage.setItem('setupSkipped', 'true');
+                    window.location.href = 'main.html';
+                });
+            }
+
+            // 下一步/完成按钮
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    if (nextBtn.disabled) return;
+                    
+                    // 保存用户选择的类型
+                    const mbtiType = mbtiSelect.value;
+                    const hollandType = hollandSelect.value;
+                    
+                    localStorage.setItem('userMbti', mbtiType);
+                    localStorage.setItem('userHolland', hollandType);
+                    localStorage.setItem('hasCompletedSetup', 'true');
+                    localStorage.setItem('setupSkipped', 'false');
+                    
+                    // 跳转到主界面
+                    window.location.href = 'main.html';
+                });
+            }
+
+            // 初始化检查
+            checkCompletion();
+        });
+    </script>
+
+    <script src="js/utils/storage.js"></script>
+    <script src="js/utils/helpers.js"></script>
+    <script src="js/modules/test.js"></script>
+</body>
+</html>
